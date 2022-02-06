@@ -10,7 +10,7 @@ class Uninitilized extends AuthBlocState {
   String toString() => 'Uninitialized';
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class Autheniticated extends AuthBlocState {
@@ -22,7 +22,7 @@ class Autheniticated extends AuthBlocState {
 
   @override
   // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class UnAuthenticated extends AuthBlocState {
@@ -31,5 +31,5 @@ class UnAuthenticated extends AuthBlocState {
 
   @override
   // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }

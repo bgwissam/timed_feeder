@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1012781149864",
+    "project_id": "timed-feeder",
+    "storage_bucket": "timed-feeder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012781149864:android:c6c7588a33bcf40a231c9d",
+        "android_client_info": {
+          "package_name": "com.sandt.timed_feeder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012781149864-g44ppo35r2f480egbltupu64hc6jnl7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-Gh-VVA1t8D_5S6C54CWQhzwi5Gogk4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012781149864-g44ppo35r2f480egbltupu64hc6jnl7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
