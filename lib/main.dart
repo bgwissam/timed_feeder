@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timed_feeder/presentation/blocs/auth_bloc_bloc.dart';
 import 'package:timed_feeder/presentation/blocs/simple_bloc_observer.dart';
-import 'package:timed_feeder/presentation/screens/dashboard_screen.dart';
 import 'package:timed_feeder/presentation/screens/home_screen.dart';
 import 'package:timed_feeder/presentation/screens/login_screen.dart';
 import 'package:timed_feeder/presentation/screens/splash_screen.dart';

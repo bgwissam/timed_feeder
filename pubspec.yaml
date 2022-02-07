@@ -22,6 +22,7 @@ dependencies:
   permission_handler: ^8.3.0
   google_sign_in: ^5.2.3
   equatable: ^2.0.3
+  email_validator: ^2.0.1
 
   cupertino_icons: ^1.0.2
 
@@ -34,4 +35,15 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: Roboto
+      fonts: 
+        - asset: fonts/roboto/Roboto-Regular.ttf
+        - asset: fonts/roboto/Roboto-Bold.ttf
+        - asset: fonts/roboto/Roboto-Italic.ttf
+        - asset: fonts/roboto/Roboto-Thin.ttf
 
