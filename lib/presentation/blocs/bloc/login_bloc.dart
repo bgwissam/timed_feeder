@@ -18,6 +18,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({required this.userRepo}) : super(LoginState.emmpty()) {
     on<LoginEvent>((event, emit) async {
       if (event is EmailChanged) {
+        print('the email: ${event.email}');
         emit(
           currentState.update(
             isEmailValid: EmailValidator.validate(event.email),
@@ -25,9 +26,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
       }
       if (event is PasswordChanged) {
+        print('the password: ${event.password}');
         emit(
           currentState.update(
-            isEmailValid: event.password.length > 6 ? true : false,
+            isPasswordValid: event.password.length > 6 ? true : false,
           ),
         );
       }
