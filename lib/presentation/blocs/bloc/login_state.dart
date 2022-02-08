@@ -1,17 +1,17 @@
 part of 'login_bloc.dart';
 
 class LoginState {
-  final bool isEmailValid;
-  final bool isPasswordValid;
+  final bool? isEmailValid;
+  final bool? isPasswordValid;
   final bool isSubmitting;
   final bool isSuccess;
   final bool isFailure;
 
-  bool get isFormValid => isEmailValid && isPasswordValid;
+  bool get isFormValid => isEmailValid! && isPasswordValid!;
 
   LoginState(
-      {required this.isEmailValid,
-      required this.isPasswordValid,
+      {this.isEmailValid,
+      this.isPasswordValid,
       required this.isSubmitting,
       required this.isSuccess,
       required this.isFailure});
@@ -57,8 +57,7 @@ class LoginState {
     );
   }
 
-  LoginState update(
-      {required bool isEmailValid, required bool isPasswordValid}) {
+  LoginState update({bool? isEmailValid, bool? isPasswordValid}) {
     return copyWith(
       isEmailValid: isEmailValid,
       isPasswordValid: isPasswordValid,
@@ -69,8 +68,8 @@ class LoginState {
   }
 
   LoginState copyWith({
-    required bool isEmailValid,
-    required bool isPasswordValid,
+    bool? isEmailValid,
+    bool? isPasswordValid,
     required bool isSubmitting,
     required bool isSuccess,
     required bool isFailure,

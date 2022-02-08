@@ -1,23 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timed_feeder/domain/repositories/user_repo.dart';
 import 'package:timed_feeder/fixed/constants.dart';
 import 'package:timed_feeder/fixed/text_styles.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:timed_feeder/presentation/blocs/bloc/login_bloc.dart';
 
 class LoginInScreen extends StatefulWidget {
   final title;
-  const LoginInScreen({Key? key, this.title}) : super(key: key);
+  UserRepo userRepo;
+  LoginInScreen({Key? key, this.title, required this.userRepo})
+      : super(key: key);
 
   @override
   _LoginInScreenState createState() => _LoginInScreenState();
 }
 
 class _LoginInScreenState extends State<LoginInScreen> {
+  late LoginBloc _loginBloc;
+  UserRepo get _userRepo => widget.userRepo;
   var size;
   final _formKey = GlobalKey<FormState>();
   final Constants _constants = Constants();
   late String emailAddress;
   late String password;
   bool _obsecure = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loginBloc = LoginBloc(userRepo: _userRepo);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _loginBloc.close();
+  }
+
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
@@ -26,7 +46,10 @@ class _LoginInScreenState extends State<LoginInScreen> {
           title: Text(widget.title),
           backgroundColor: Colors.yellow[700],
         ),
-        body: _buildSignInForm());
+        body: BlocProvider<LoginBloc>(
+          create: (context) => _loginBloc,
+          child: _buildSignInForm(),
+        ));
   }
 
   Widget _buildSignInForm() {

@@ -57,16 +57,17 @@ class _AppState extends State<App> {
               return const SplashScreen();
             }
             if (state is Autheniticated) {
-              return HomeScreen(
+              return const HomeScreen(
                 title: 'DashBoard',
               );
             }
             if (state is UnAuthenticated) {
               return LoginInScreen(
                 title: 'Sign In',
+                userRepo: _userRepo,
               );
             }
-            return Center(child: Text('Unresolved error, contact admin'));
+            return const Center(child: Text('Unresolved error, contact admin'));
           },
         ),
       ),
