@@ -6,6 +6,7 @@ import 'package:timed_feeder/fixed/text_styles.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:timed_feeder/presentation/blocs/auth_bloc_bloc.dart';
 import 'package:timed_feeder/presentation/blocs/bloc/login_bloc.dart';
+import 'package:timed_feeder/presentation/widgets/buttons.dart';
 import 'package:timed_feeder/presentation/widgets/snack_bar.dart';
 
 class LoginInScreen extends StatefulWidget {
@@ -52,6 +53,12 @@ class _LoginInScreenState extends State<LoginInScreen> {
         appBar: AppBar(
           title: Text(widget.title),
           backgroundColor: Colors.yellow[700],
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: RegisterButton(userRepo: _userRepo),
+            )
+          ],
         ),
         body: BlocProvider<LoginBloc>(
           create: (context) => _loginBloc,
@@ -117,8 +124,10 @@ class _LoginInScreenState extends State<LoginInScreen> {
                             borderSide: BorderSide(color: Colors.blue)),
                       ),
                       validator: (_) {
-                        print('the email state: ${state.isEmailValid}');
-                        return !state.isEmailValid! ? 'Invalid Email' : null;
+                        return state.isEmailValid != null &&
+                                !state.isEmailValid!
+                            ? 'Invalid Email'
+                            : null;
                       },
                     ),
                   ),
@@ -156,7 +165,8 @@ class _LoginInScreenState extends State<LoginInScreen> {
                             borderSide: BorderSide(color: Colors.blue)),
                       ),
                       validator: (_) {
-                        return !state.isPasswordValid!
+                        return state.isPasswordValid != null &&
+                                !state.isPasswordValid!
                             ? 'Password not valid'
                             : null;
                       },
@@ -182,6 +192,11 @@ class _LoginInScreenState extends State<LoginInScreen> {
                         child: Text(_constants.signIn),
                       ),
                     ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: SizedBox(
+                        width: size.width, child: const GoogleLoginButton()),
                   ),
 
                   //forgot password button

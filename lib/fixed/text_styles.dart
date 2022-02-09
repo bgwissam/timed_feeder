@@ -8,3 +8,9 @@ const textStyle1 = TextStyle(
   fontSize: 18,
   color: Colors.grey,
 );
+
+const textStyle2 = TextStyle(
+  fontFamily: 'Roboto',
+  fontSize: 18,
+  color: Colors.white,
+);

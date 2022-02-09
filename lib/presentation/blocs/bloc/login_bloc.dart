@@ -18,7 +18,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({required this.userRepo}) : super(LoginState.emmpty()) {
     on<LoginEvent>((event, emit) async {
       if (event is EmailChanged) {
-        print('the email: ${event.email}');
         emit(
           currentState.update(
             isEmailValid: EmailValidator.validate(event.email),
@@ -26,7 +25,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
       }
       if (event is PasswordChanged) {
-        print('the password: ${event.password}');
         emit(
           currentState.update(
             isPasswordValid: event.password.length > 6 ? true : false,
@@ -35,6 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
       if (event is LoginWithGooglePressed) {
         try {
+          emit(LoginState.loading());
           await userRepo.signInWithGoogle();
           emit(LoginState.success());
         } catch (_) {
@@ -43,6 +42,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
       if (event is LoginWithCredentialsPressed) {
         try {
+          emit(LoginState.loading());
           await userRepo.signInWithCredentials(
               emailAddress: event.email, password: event.password);
           emit(LoginState.success());
@@ -52,8 +52,4 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
     });
   }
-
-  // @override
-  // LoginState get initialState => LoginState.emmpty();
-
 }
