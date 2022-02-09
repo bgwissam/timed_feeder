@@ -11,8 +11,8 @@ import 'package:timed_feeder/presentation/widgets/snack_bar.dart';
 
 class LoginInScreen extends StatefulWidget {
   final title;
-  UserRepo userRepo;
-  LoginInScreen({Key? key, this.title, required this.userRepo})
+  final UserRepo userRepo;
+  const LoginInScreen({Key? key, this.title, required this.userRepo})
       : super(key: key);
 
   @override
@@ -21,6 +21,7 @@ class LoginInScreen extends StatefulWidget {
 
 class _LoginInScreenState extends State<LoginInScreen> {
   late LoginBloc _loginBloc;
+  late AuthBlocBloc _authBloc;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   SnackBarWidget _snackBarWidget = SnackBarWidget();
@@ -34,6 +35,7 @@ class _LoginInScreenState extends State<LoginInScreen> {
   @override
   void initState() {
     super.initState();
+    _authBloc = BlocProvider.of<AuthBlocBloc>(context);
     _loginBloc = LoginBloc(userRepo: _userRepo);
     _emailController.addListener(_onEmailChanged);
     _passwordController.addListener(_onPasswordChanged);
@@ -56,7 +58,10 @@ class _LoginInScreenState extends State<LoginInScreen> {
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: RegisterButton(userRepo: _userRepo),
+              child: BlocProvider(
+                create: (context) => _authBloc,
+                child: RegisterButton(userRepo: _userRepo),
+              ),
             )
           ],
         ),

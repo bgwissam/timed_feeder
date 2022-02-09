@@ -29,6 +29,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       }
       if (event is Submitted) {
         try {
+          print('we are here trying to add user');
           emit(RegisterState.loading());
           await userRepo.signUp(
               emailAddress: event.email.trim(),
@@ -36,6 +37,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           emit(
             RegisterState.success(),
           );
+          print('the user has been added');
         } catch (_) {
           emit(
             RegisterState.failure(),
