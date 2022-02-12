@@ -26,8 +26,8 @@ class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
         }
       }
       if (event is LoggedIn) {
-        var name = await userRepo.getUser();
-        emit(Autheniticated(displayName: name!.displayName!));
+        //var name = await userRepo.getUser();
+        emit(Autheniticated(displayName: 'any name now'));
       }
       if (event is LoggedOut) {
         emit(UnAuthenticated());

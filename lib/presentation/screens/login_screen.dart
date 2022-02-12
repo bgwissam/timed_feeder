@@ -233,6 +233,8 @@ class _LoginInScreenState extends State<LoginInScreen> {
   }
 
   void _onFormSubmitted() {
+    print(
+        'the user and pass: ${_emailController.text} ${_passwordController.text}');
     _loginBloc.add(LoginWithCredentialsPressed(
         email: _emailController.text, password: _passwordController.text));
   }

@@ -21,6 +21,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final TextEditingController _passwordController = TextEditingController();
   SnackBarWidget _snackBarWidget = SnackBarWidget();
   late RegisterBloc _registerBloc;
+  late AuthBlocBloc _authBloc;
 
   final _formKey = GlobalKey<FormState>();
   UserRepo get _userRepo => widget.userRepo;
@@ -30,7 +31,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   void initState() {
     super.initState();
-
+    _authBloc = AuthBlocBloc(userRepo: widget.userRepo);
     _registerBloc = RegisterBloc(userRepo: widget.userRepo);
     _emailController.addListener(_onEmailChanged);
     _passwordController.addListener(_onPasswordChanged);
@@ -53,8 +54,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         title: Text(_constants.register),
         backgroundColor: Colors.yellow[700],
       ),
-      body: BlocProvider(
-        create: (context) => _registerBloc,
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => _authBloc),
+          BlocProvider(create: (context) => _registerBloc),
+        ],
         child: _buildRegistrationForm(),
       ),
     );

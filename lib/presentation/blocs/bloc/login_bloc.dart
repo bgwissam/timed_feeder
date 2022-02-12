@@ -43,8 +43,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (event is LoginWithCredentialsPressed) {
         try {
           emit(LoginState.loading());
-          await userRepo.signInWithCredentials(
-              emailAddress: event.email, password: event.password);
+          await userRepo
+              .signInWithCredentials(
+                  emailAddress: event.email, password: event.password)
+              .catchError((err) {
+            print('error login in: $err');
+            return err;
+          });
           emit(LoginState.success());
         } catch (_) {
           emit(LoginState.failure());
