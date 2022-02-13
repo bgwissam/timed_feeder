@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Center(
             child: RippleButton(
               size: 0.3,
+              name: 'Add Child',
             ),
           )
           //A list of added children

@@ -5,6 +5,7 @@ import 'package:timed_feeder/fixed/constants.dart';
 import 'package:timed_feeder/fixed/text_styles.dart';
 import 'package:timed_feeder/presentation/blocs/auth_bloc_bloc.dart';
 import 'package:timed_feeder/presentation/blocs/bloc/register_bloc.dart';
+import 'package:timed_feeder/presentation/screens/home_screen.dart';
 import 'package:timed_feeder/presentation/widgets/snack_bar.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -67,7 +68,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget _buildRegistrationForm() {
     return BlocListener<RegisterBloc, RegisterState>(
       bloc: _registerBloc,
-      listener: (context, state) {
+      listener: (context, state) async {
         print('the current state: $state');
         if (state.isFailure) {
           _snackBarWidget.content = 'Failed to register';
@@ -79,7 +80,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         }
         if (state.isSuccess) {
           BlocProvider.of<AuthBlocBloc>(context).add(LoggedIn());
-          Navigator.pop(context);
+          await Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => HomeScreen(title: 'Dashboard')),
+              (route) => false);
         }
       },
       child: BlocBuilder<RegisterBloc, RegisterState>(

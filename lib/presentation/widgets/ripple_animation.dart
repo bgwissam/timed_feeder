@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class RippleAnimation extends StatefulWidget {
-  const RippleAnimation(this.endedCallBack, {Key? key, this.size})
+  const RippleAnimation(this.endedCallBack, {Key? key, this.size, this.name})
       : super(key: key);
   final VoidCallback? endedCallBack;
   final double? size;
+  final String? name;
   @override
   _RippleAnimationState createState() => _RippleAnimationState();
 }
@@ -27,8 +28,8 @@ class _RippleAnimationState extends State<RippleAnimation>
             }
           });
     _scale = Tween<double>(begin: 1, end: 1.3).animate(_controller);
-    _color = Tween<Color>(
-            begin: Colors.orange, end: Colors.orange.withOpacity(0.2))
+    _color = ColorTween(
+            begin: Colors.orange, end: Colors.yellow.withOpacity(0.2))
         .animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
 
     super.initState();
@@ -43,14 +44,16 @@ class _RippleAnimationState extends State<RippleAnimation>
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
+
     _controller.forward();
     return AnimatedBuilder(
         animation: _controller,
         builder: (context, child) {
           return Center(
             child: Container(
-              width: (_size.width * widget.size!) * _scale.value,
-              height: (_size.width * widget.size!) * _scale.value,
+              child: Center(child: Text(widget.name!)),
+              width: _scale.value * (_size.width * widget.size!),
+              height: _scale.value * (_size.height * widget.size!),
               decoration:
                   BoxDecoration(shape: BoxShape.circle, color: _color.value),
             ),
