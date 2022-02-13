@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timed_feeder/fixed/text_styles.dart';
 
 class RippleAnimation extends StatefulWidget {
   const RippleAnimation(this.endedCallBack, {Key? key, this.size, this.name})
@@ -51,11 +52,19 @@ class _RippleAnimationState extends State<RippleAnimation>
         builder: (context, child) {
           return Center(
             child: Container(
-              child: Center(child: Text(widget.name!)),
+              child: Center(child: Text(widget.name!, style: textStyle2)),
               width: _scale.value * (_size.width * widget.size!),
               height: _scale.value * (_size.height * widget.size!),
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: _color.value),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _color.value,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.6),
+                        spreadRadius: 2,
+                        blurRadius: 1,
+                        offset: Offset(0, 1))
+                  ]),
             ),
           );
         });

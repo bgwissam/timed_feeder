@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const [
           //A button to add a child
           Center(
             child: RippleButton(
