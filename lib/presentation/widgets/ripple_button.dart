@@ -5,9 +5,11 @@ import 'package:timed_feeder/fixed/text_styles.dart';
 import 'package:timed_feeder/presentation/widgets/ripple_animation.dart';
 
 class RippleButton extends StatefulWidget {
-  const RippleButton({Key? key, this.size, this.name}) : super(key: key);
+  const RippleButton({Key? key, this.size, this.name, this.route})
+      : super(key: key);
   final double? size;
   final String? name;
+  final Route? route;
   @override
   _RippleButtonState createState() => _RippleButtonState();
 }
@@ -61,20 +63,17 @@ class _RippleButtonState extends State<RippleButton> {
               setState(() {
                 _pressed = true;
               });
-              Timer(
-                  Duration(seconds: 4),
-                  () => setState(() {
-                        _pressed = false;
-                        _anims = [];
-                        //Add code here to navigate to a new page
-                      }));
-              _runRipple();
-            },
-            onLongPressEnd: (_) {
-              setState(() {
-                _anims = [];
-                _pressed = false;
+              Timer(const Duration(seconds: 3), () async {
+                setState(() {
+                  _pressed = false;
+                  _anims = [];
+                });
+                print('the route: ${widget.route!}');
+
+                await Navigator.push(context, widget.route!);
               });
+
+              _runRipple();
             },
             child: Container(
               width: (_size.width * widget.size!),

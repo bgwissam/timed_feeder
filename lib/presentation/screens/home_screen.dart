@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timed_feeder/presentation/screens/dependant/add_child.dart';
 import 'package:timed_feeder/presentation/widgets/ripple_button.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,12 +25,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           //A button to add a child
           Center(
             child: RippleButton(
               size: 0.3,
               name: 'Add Child',
+              route: MaterialPageRoute(
+                builder: (_) => AddChild(),
+              ),
             ),
           )
           //A list of added children

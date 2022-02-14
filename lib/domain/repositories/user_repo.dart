@@ -44,7 +44,7 @@ class UserRepo {
   Future<bool> isSignedIn() async {
     var _isSignedIn = false;
     _firebaseAuth.authStateChanges().listen((user) {
-      user == null ? _isSignedIn = false : _isSignedIn = true;
+      user?.uid == null ? _isSignedIn = false : _isSignedIn = true;
     });
 
     return _isSignedIn;

@@ -14,8 +14,11 @@ class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
       if (event is AppStarted) {
         emit(Uninitilized());
         try {
+          var repo = await userRepo.getUser().then((val) {
+            return val?.uid;
+          });
           final isSignedIn = await userRepo.isSignedIn();
-          if (isSignedIn) {
+          if (isSignedIn != null) {
             final name = await userRepo.getUser();
             emit(Autheniticated(displayName: name!.displayName!));
           } else {
