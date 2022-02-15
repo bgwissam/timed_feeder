@@ -14,3 +14,9 @@ const textStyle2 = TextStyle(
   fontSize: 18,
   color: Colors.white,
 );
+
+const textStyle3 = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 15,
+    color: Colors.black,
+    fontStyle: FontStyle.italic);

@@ -20,7 +20,6 @@ class UserModel {
 class DependantModel {
   String? uid;
   String? fullName;
-  String? lastName;
   int? age;
   String? solidFeeds;
   double? quantitySolidInGrams;
